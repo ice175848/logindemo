@@ -1,0 +1,58 @@
+@model logindemo.Models.vmLogin
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+<div class = "card">
+    <div class = "card-header">
+        <h3>使用者登入</h3>
+    </div>
+        <div class = "card-body">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <label asp-for="UserNo" class="control-label col-md-3"></label>
+                    <div class = "col-md-9">
+                    <input asp-for="UserNo" class="form-control" />
+                    <span asp-validation-for="UserNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Password" class="control-label col-md-3"></label>
+                    <div class = "col-md-9">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+    <div class="control-label col-md-3">驗證碼</div>
+    <div class="col-md-9">
+        <div class="float-start">
+            <div class="captcha-code code dynamic-code float-start me-2"></div>
+        </div>
+        <div class="float-start">
+            <div class="captcha-reload float-start me-4" role="button"><i class="fas fa-sync-alt"></i></div>
+        </div>
+        <div class="float-start">
+            <input type="text" class="form-control  me-2" id="captcha-input" required autocomplete="off" placeholder="請輸入驗證碼 ...">
+            <span id="errCaptcha"></span>
+        </div>
+    </div>
+</div>
+                <div class="form-group row">
+                    <div class = "col-md-12">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Styles {
+    <link href="@Url.Content("~/lib/Captcha/captcha.css")" rel="stylesheet" />
+}
+
+@section ScriptsBody {
+    <script src="@Url.Content("~/lib/Captcha/captcha.js")"></script>
+}
